@@ -1,6 +1,6 @@
 from aiogram import types
 
-from init import dp
+from loader import dp
 
 
 @dp.message_handler()

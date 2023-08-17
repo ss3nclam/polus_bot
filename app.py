@@ -1,7 +1,7 @@
 from aiogram import executor
 
-from init import dp, app_verbose
-from handlers import echo, start
+import handlers
+from loader import app_verbose, dp
 
 
 if __name__ == "__main__":
