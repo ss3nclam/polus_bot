@@ -1,3 +1,5 @@
-from utils import duty
+string = 'jopa, jopa1'
 
-print(duty.today())
+print(
+    string[::-1].replace(',', 'dna ', 1)[::-1]
+)
