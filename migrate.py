@@ -1,3 +1,3 @@
-from utils.db.models import migrate
+from utils.db.models import create_tables
 
-migrate()
+create_tables()

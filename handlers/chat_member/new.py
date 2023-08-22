@@ -2,11 +2,10 @@ import logging
 from datetime import datetime
 
 from aiogram import types
-from sqlalchemy.orm import Session
 
 from filters.chat_type import isgroup
 from handlers.commands.start import send_hello
-from loader import db_engine, dp
+from loader import db_session, dp
 from utils.db.models import User
 
 
@@ -18,8 +17,8 @@ async def hello_new_user(message: types.Message):
     await send_hello(message, new_users_names)
     for new_user in new_users:
         try:
-            with Session(db_engine) as session:
-                new_user = User(id=new_user.id, name=new_user.first_name, created=datetime.now())
+            with db_session as session:
+                new_user = User(id=new_user.id, name=new_user.first_name, created_at=datetime.now())
                 session.add(new_user)
                 session.commit()
                 logging.info('New user to Database writing: %s', 'successfully writed')

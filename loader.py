@@ -3,6 +3,7 @@ from configparser import ConfigParser
 from datetime import date
 
 from aiogram import Bot, Dispatcher
+from sqlalchemy.orm import Session
 
 from utils.db import engine
 
@@ -24,5 +25,6 @@ app_verbose = logging.basicConfig(
 bot = Bot(token = config['INIT']['token'])
 dp = Dispatcher(bot)
 
-# Create DB Engine
+# Create DB Engine and session
 db_engine = engine.create(config)
+db_session = Session(db_engine)

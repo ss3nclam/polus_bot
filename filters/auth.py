@@ -5,10 +5,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from utils.db.models import User
-from loader import db_engine
-
-
-session = Session(db_engine)
+from loader import db_session
 
 
 class IsUser(Filter):
@@ -16,7 +13,7 @@ class IsUser(Filter):
     db_req = select(User.id)
 
     async def check(self, message: types.Message):
-        return message.from_user.id in list(session.scalars(self.db_req))
+        return message.from_user.id in list(db_session.scalars(self.db_req))
 
 
 class IsAdmin(Filter):
@@ -24,7 +21,7 @@ class IsAdmin(Filter):
     db_req = select(User.id).where(User.role.__eq__('admin'))
 
     async def check(self, message: types.Message):
-        return message.from_user.id in list(session.scalars(self.db_req))
+        return message.from_user.id in list(db_session.scalars(self.db_req))
 
 
 isadmin = IsAdmin()
