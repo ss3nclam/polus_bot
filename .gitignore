@@ -3,3 +3,4 @@ __pycache__
 .vscode/
 .graphic/
 config.conf
+docker-compose.yml
